@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Sifting and selection methods</span>
+    <form class="form" action="strengths-change" method="post">
+    {% set otherHTML %}
+    {{ govukInput({
+      label: {
+        text: "Tell us the additional assessment method"
+      },
+      id: "other-assess",
+      name: "other-assess",
+      value: data['other-assess']
+    }) }}
+    {% endset %}
+
+    {{ govukRadios({
+      idPrefix: "interview-assessments",
+      name: "interview-assessments",
+      fieldset: {
+        legend: {
+          text: "How will you interview?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--l"
+        }
+      },
+      hint: {
+        text: "Interview questions will be recommended when candidates are sifted."
+      },
+      items: [
+      {
+        value: "Remotely",
+        text: "Remotely",
+        checked: checked("interview-assessments","Remotely"),
+        hint: {
+          text: "A live interview to be held via video software."
+        }
+      },
+      {
+        value: "In person",
+        text: "In person",
+        checked: checked("interview-assessments","In person"),
+        hint: {
+          text: "To be held in a Government building."
+        }
+      },
+      {
+          value: "Pre-recorded",
+          text: "Pre-recorded",
+          checked: checked("interview-assessments","Pre-recorded"),
+          hint: {
+            text: "A pre-recorded interview is when an applicant is guided through a series of interview questions and records their answers in their own time."
+          }
+        }
+      ]
+    }) }}
+
+      {{ govukCheckboxes({
+    idPrefix: "what-assessments",
+    name: "what-assessments",
+    fieldset: {
+      legend: {
+        text: "What will you assess at interview?",
+        isPageHeading: false,
+        classes: "govuk-fieldset__legend--l"
+      }
+    },
+    hint: {
+      text: "Select all that apply."
+    },
+    items: [
+    {
+      value: "Activity",
+      text: "Activity",
+      checked: checked("what-assessments","Activity"),
+      hint: {
+        text: "for example, a presentation."
+      }
+    },
+    {
+        value: "Strengths",
+        text: "Strengths",
+        checked: checked("what-assessments","Strengths"),
+        hint: {
+          text: "Quick questions to test candidate instinctive responses."
+        }
+      },
+      {
+        value: "other",
+        text: "Other",
+        conditional: {
+          html: otherHTML
+        }
+      }
+    ]
+  }) }}
+
+  <button class="govuk-button" data-module="govuk-button">Continue</button>
+  {{ govukButton({
+    text: "Preview advert",
+    classes: "govuk-button--secondary",
+    href: "preview-advert"
+  }) }}
+  {% include 'includes/return-task-list.html' %}
+</form>
+
+</div>
+</div>
+{% endblock %}

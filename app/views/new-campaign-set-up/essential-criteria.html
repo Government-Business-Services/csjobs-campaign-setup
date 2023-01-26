@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Advert set up</span>
+    <form class="form" action="tech-criteria" method="post">
+
+      {% call govukFieldset({
+        legend: {
+          text: "What is the essential criteria needed for this role?",
+          classes: "govuk-fieldset__legend--l",
+          isPageHeading: true
+        }
+      }) %}
+      <p>For example, can touch type at 50 words/min. This will be visible on the advert.</p>
+      {{ govukTextarea({
+        label: {
+          text: "Essential criteria 1"
+        },
+        id: "experience1",
+        name: "experience1",
+        value: data['experience1']
+      }) }}
+
+      {{ govukTextarea({
+        label: {
+          text: "Essential criteria 2"
+        },
+        id: "experience2 (optional)",
+        name: "experience2",
+        value: data['experience2']
+      }) }}
+
+      {{ govukTextarea({
+        label: {
+          text: "Essential criteria 3 (optional)"
+        },
+        id: "experience3",
+        name: "experience3",
+        value: data['experience3']
+      }) }}
+
+      {{ govukTextarea({
+        label: {
+          text: "Essential criteria 4 (optional)"
+        },
+        id: "experience4",
+        name: "experience4",
+        value: data['experience4']
+      }) }}
+
+      {% endcall %}
+      <p><a href="">Add another experience</a></p>
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      {{ govukButton({
+        text: "Preview advert",
+        classes: "govuk-button--secondary",
+        href: "preview-advert"
+      }) }}
+
+{% include 'includes/return-task-list.html' %}
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+{% set address1 = data['input-autocomplete'] %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-xl">Summary</span>
+    <h1 class="govuk-heading-xl">Contract information</h1>
+    <h2 class="govuk-heading-m">Locations</h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Based in the UK</dt>
+        <dd class="govuk-summary-list__value">{{ data['ussk']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="/campaign-set-up/blank/basic-details">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Office-based or remote?</dt>
+        <dd class="govuk-summary-list__value">{{ data['uk']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> grade</span></a></dd>
+      </div>
+      <div id="inout" class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Number of locations</dt>
+        <dd class="govuk-summary-list__value">{{ data['number-loc']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> cabinet office role?</span></a></dd>
+      </div>
+      <div id="inout2" class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Location</dt>
+        <dd class="govuk-summary-list__value">{{ address1 }}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> cabinet office role?</span></a></dd>
+      </div>
+    </dl>
+    <h2 class="govuk-heading-m">Contract details</h2>
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Contract</dt>
+        <dd class="govuk-summary-list__value">{{ data['contract']}} {{ data['fta']}} {{ data['reason']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Working pattern</dt>
+        <dd class="govuk-summary-list__value">{{ data['working-pattern']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Salary and benefits</h2>
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Salary</dt>
+        <dd class="govuk-summary-list__value">£{{ data['cost']}} per annum</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Additional allowances</dt>
+        <dd class="govuk-summary-list__value">{{ data['otherAllow']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> number of posts availables</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Standard Civil Service benefits</dt>
+        <dd class="govuk-summary-list__value">Learning and development tailored to your role, An environment with flexible working options, A culture encouraging inclusion and diversity, A Civil Service pension</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> number of posts availables</span></a></dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Contact details</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Primary contact</dt>
+        <dd class="govuk-summary-list__value">{{ data['contact']}} {{ data['contact-email']}} {{ data['contact-num']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> Business area</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Send updates to</dt>
+        <dd class="govuk-summary-list__value">{{ data['their-email']}}<br>{{ data['update-detail']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> Business area</span></a></dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">Reserved status, checking and vetting</h2>
+    <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Clearance required </dt>
+        <dd class="govuk-summary-list__value">{{ data['bpss-correct']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="#">Change<span class="govuk-visually-hidden"> profession</span></a></dd>
+      </div>
+    </dl>
+
+
+  </div>
+</div>
+<span class="govuk-caption-l">Next section</span>
+<h2 class="govuk-heading-l">Advert setup</h2>
+<form action="about-the-role" method="post" novalidate>
+  <input type="hidden" name="answers-checked" value="true">
+  <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+</form>
+{% include 'includes/return-task-list.html' %}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+
+<div id="blah" class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Contract information</span>
+    <h1 class="govuk-heading-l">Where is the role based?</h1>
+    <form class="form" action="contract-details" method="post">
+
+      <div id="fir" class="govuk-form-group govuk-input--width-30">
+        <label for="autocomplete-default-loc" class="govuk-label--m">Location</label>
+        <div id="locations2" class="autocomplete-wrapper"></div>
+
+      </div>
+
+
+
+
+<p><a href="">Add another location</a></p>
+
+
+
+
+      {{ govukCheckboxes({
+        idPrefix: "hidden",
+        name: "hidden",
+        classes: "govuk-checkboxes--small",
+        fieldset: {
+          legend: {
+            text: "",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+        {
+          value: "hidden",
+          text: "Check this box if you need the location addresses to be hidden"
+        }
+        ]
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+      {{ govukButton({
+        text: "Preview advert",
+        classes: "govuk-button--secondary",
+        href: "preview-advert"
+      }) }}
+
+      {% include 'includes/return-task-list.html' %}
+    </form>
+  </div>
+</div>
+<script src="/public/javascripts/accessible-autocomplete.js"></script>
+<script src="/public/javascripts/locations.js"></script>
+<script src="/public/javascripts/locations2.js"></script>
+
+{% endblock %}

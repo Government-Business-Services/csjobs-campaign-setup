@@ -1,0 +1,210 @@
+
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-xl">Summary</span>
+    <h1 class="govuk-heading-xl">Sifting and selection methods</h1>
+
+    <h2 class="govuk-heading-l">At Sift</h2>
+
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>{{ data['experience1'] | truncate(150)}}</li>
+            <li>{{ data['experience2'] | truncate(150)}}</li>
+          </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Evidence to be assessed at sift</dt>
+        <dd class="govuk-summary-list__value">
+          {% set arr = data['howsift'] %}
+
+          {%- for items in arr | slice(1) %}
+          <ul class="govuk-list govuk-list--bullet  {{ loop.index }}">
+            {%- for item in items %}
+            <li>{{ item }}</li>
+            {%- endfor %}
+          </ul>
+          {%- endfor %}
+        </dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Online tests</dt>
+        <dd class="govuk-summary-list__value">
+          {% set arr = data['tests'] %}
+
+          {%- for items in arr | slice(1) %}
+          <ul class="govuk-list govuk-list--bullet  {{ loop.index }}">
+            {%- for item in items %}
+            <li>{{ item }}</li>
+            {%- endfor %}
+          </ul>
+          {%- endfor %}
+        </dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Technical skills</dt>
+        <dd class="govuk-summary-list__value">
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>{{ data['siftskillqual'] | truncate(150)}}</li>
+                  </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+
+
+
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Behaviours</dt>
+        <dd class="govuk-summary-list__value">
+          {% set arr = data['siftSP'] %}
+
+          {%- for items in arr | slice(1) %}
+          <ul class="govuk-list govuk-list--bullet {{ loop.index }}">
+            {%- for item in items %}
+            <li>{{ item }}</li>
+            {%- endfor %}
+          </ul>
+          {%- endfor %}
+        </dd>
+
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-l">At Interview</h2>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Interview method / format</dt>
+        <dd class="govuk-summary-list__value">{{ data['interview-assessments']}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="essential-criteria">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">
+
+          <ul class="govuk-list govuk-list--bullet">
+            <li>{{ data['essinterview'] | truncate(150)}}</li>
+      
+          </ul>
+        </dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Behaviours</dt>
+          <dd class="govuk-summary-list__value">
+            {% set arr = data['interviewSP'] %}
+
+            {%- for items in arr | slice(1) %}
+            <ul class="govuk-list govuk-list--bullet {{ loop.index }}">
+              {%- for item in items %}
+              <li>{{ item }}</li>
+              {%- endfor %}
+            </ul>
+            {%- endfor %}
+          </dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      </dl>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Strengths</dt>
+            <dd class="govuk-summary-list__value">
+              {% set arr = data['big-picture'] %}
+              {% set arr2 = data['changing'] %}
+              {% set arr3 = data['decisions'] %}
+              {% set array = [arr, arr2, arr3] %}
+
+              {%- for items in array | slice(1) %}
+              <ul class="govuk-list govuk-list--bullet {{ loop.index }}">
+                {%- for item in items %}
+                <li>{{ item }}</li>
+                {%- endfor %}
+              </ul>
+              {%- endfor %}
+            </dd>
+          <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+        </div>
+        </dl>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Person specification</dt>
+            <dd class="govuk-summary-list__value">{{ data['interview-assessments'] | truncate(150)}}</dd>
+            <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Responsibilities</dt>
+            <dd class="govuk-summary-list__value">{{ data['what-assessments']  | truncate(150)}}</dd>
+            <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+          </div>
+        </dl>
+
+
+
+
+
+
+
+
+  </div>
+</div>
+<span class="govuk-caption-l">Next section</span>
+<h2 class="govuk-heading-l">Recruitment channels</h2>
+  <form action="approach" method="post" novalidate>
+    <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+  </form>
+
+
+    {% include 'includes/return-task-list.html' %}
+    {% endblock %}

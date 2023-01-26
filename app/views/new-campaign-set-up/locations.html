@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">Contract information</span>
+    <h1 class="govuk-heading-l">Where is the role based?</h1>
+    <form class="form" action="/locations-altergo" method="post">
+      {% set numberHTML %}
+      {{ govukInput({
+        label: {
+          text: "How many locations?",
+          isPageHeading: false,
+          classes: "govuk-label--m"
+        },
+        classes: "govuk-input--width-3",
+        id: "number-loc",
+        name: "number-loc",
+        value: data['number-loc']
+      }) }}
+      {% endset %}
+
+      {{ govukRadios({
+        id: "ussk",
+        name: "ussk",
+        fieldset: {
+          legend: {
+            text: "Is the role based in the UK?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+        {
+          value: "Yes",
+          text: "Yes",
+          checked: checked("ussk","Yes")
+        },
+        {
+          value: "No",
+          text: "No",
+          checked: checked("ussk","No")
+        }
+        ]
+      }) }}
+
+
+
+
+
+      {{ govukRadios({
+
+        id: "uk",
+        name: "uk",
+        fieldset: {
+          legend: {
+            text: "Will the role be mainly office or remotely based?",
+            isPageHeading: false,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+        {
+          value: "Office-based",
+          text: "Office-based",
+          checked: checked("uk","Office-based")
+        },
+        {
+          value: "Remote",
+          text: "Remote",
+          checked: checked("uk","Remote")
+        }
+        ]
+      }) }}
+
+      <div id="conditional">
+        {{ govukRadios({
+          idPrefix: "location-count",
+          name: "location-count",
+          fieldset: {
+            legend: {
+              text: "Will the role be available in just one location?",
+              isPageHeading: false,
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          items: [
+          {
+            value: "Yes",
+            text: "Yes",
+            checked: checked("location-count","Yes"),
+            conditional: {
+              html: conditional
+            }
+          },
+          {
+            value: "No, the role is available in multiple locations",
+            text: "No, the role is available in multiple locations",
+            checked: checked("location-count","No, the role is available in multiple locations"),
+            conditional: {
+              html: numberHTML
+            }
+          }
+          ]
+        }) }}
+      </div>
+
+
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+
+      {{ govukButton({
+        text: "Preview advert",
+        classes: "govuk-button--secondary",
+        href: "preview-advert"
+      }) }}
+{% include 'includes/return-task-list.html' %}
+    </form>
+  </div>
+</div>
+{% endblock %}

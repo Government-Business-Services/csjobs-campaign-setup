@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Sifting and selection methods</span>
+<h1 class="govuk-heading-l">Are there any additional assessment requirements?</h1>
+<form class="form" action="summary-section-4" method="post">
+
+{% set assessmentHTML %}
+{{ govukTextarea({
+  name: "assessment-needs",
+  id: "assessment-needs",
+  value: data['assessment-needs'],
+  label: {
+    text: "What additional assessments are required?",
+    classes: "govuk-label--s",
+    isPageHeading: false
+  }
+}) }}
+{% endset %}
+
+    {{ govukRadios({
+  idPrefix: "additional-assessments",
+  name: "additional-assessments",
+  fieldset: {
+    legend: {
+      text: "",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  hint: {
+    text: "You will be contacted about additional assessments separately."
+  },
+  items: [
+    {
+      value: "Yes",
+      text: "Yes",
+      checked: checked("additional-assessments","Yes"),
+      conditional: {
+        html: assessmentHTML
+      }
+    },
+    {
+      value: "No",
+      text: "No",
+      checked: checked("additional-assessments","No")
+    }
+  ]
+}) }}
+
+<button class="govuk-button" data-module="govuk-button">Continue</button>
+
+{{ govukButton({
+  text: "Preview advert",
+  classes: "govuk-button--secondary",
+  href: "preview-advert"
+}) }}
+</form>
+{% include 'includes/return-task-list.html' %}
+
+</div>
+</div>
+{% endblock %}

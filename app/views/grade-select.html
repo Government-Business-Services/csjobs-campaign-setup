@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Basic details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Tell us about the role</h1>
+
+    <form class="form" action="templates" method="post">
+
+
+
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {{ govukRadios({
+        name: "grade",
+        fieldset: {
+          legend: {
+            text: "Select the grade of the role",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--m"
+          }
+        },
+        items: [
+        {
+          value: "Administrative Assistant (AA)",
+          text: "Administrative Assistant (AA)",
+          checked: checked("grade","Administrative Assistant (AA)")
+        },
+        {
+          value: "Administrative Officer (AO)",
+          text: "Administrative Officer (AO)",
+          checked: checked("grade","Administrative Officer (AO)")
+
+        },
+        {
+          value: "Executive Officer (EO)",
+          text: "Executive Officer (EO)",
+          checked: checked("grade","Executive Officer  (EO)")
+        },
+        {
+          value: "Higher Executive Officer (HEO)",
+          text: "Higher Executive Officer (HEO)",
+          checked: checked("grade","Higher Executive Officer (HEO)")
+        },
+        {
+          value: "Senior Executive Officer (SEO)",
+          text: "Senior Executive Officer (SEO)",
+          checked: checked("grade","Senior Executive Officer (SEO)")
+        },
+        {
+          value: "Grade 7",
+          text: "Grade 7",
+          checked: checked("grade","Grade 7")
+        },
+        {
+          value: "Grade 6",
+          text: "Grade 6",
+          checked: checked("grade","Grade 6")
+        }
+        ]
+      }) }}
+
+      <button class="govuk-button" data-module="govuk-button">Continue</button>
+      <p><a href="../sign-in">Save and sign out</a></p>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

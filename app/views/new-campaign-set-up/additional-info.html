@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+<span class="govuk-caption-l">Advert set up</span>
+          <form class="form" action="summary-section-3" method="post">
+    {{ govukInput({
+      label: {
+        text: "Add supporting information to the advert",
+        classes: "govuk-label--l",
+        isPageHeading: true
+      },
+      hint: {
+        text: "This could be a link to a video or department specific website. This will be visible to candidates."
+      },
+      classes: "govuk-input--width-20",
+      id: "job-profession",
+      name: "job-profession",
+      value: "www.linkedin.com/homeoffice"
+    }) }}
+
+    <p class="govuk-body">
+      <a href="#" class="govuk-link govuk-link--no-visited-state">Add more information</a>
+    </p>
+
+
+    <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+    {{ govukButton({
+      text: "Preview advert",
+      classes: "govuk-button--secondary",
+      href: "preview-advert"
+    }) }}
+</form>
+{% include 'includes/return-task-list.html' %}
+
+</div>
+</div>
+{% endblock %}

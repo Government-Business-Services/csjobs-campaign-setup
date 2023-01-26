@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+<span class="govuk-caption-l">Sifting and selection methods</span>
+  <h1 class="govuk-heading-l">Assessment of behaviour</h1>
+    <form class="form" action="online-tests" method="post">
+
+
+
+
+
+{{ govukCheckboxes({
+idPrefix: "siftSP",
+name: "siftSP",
+fieldset: {
+  legend: {
+    text: "What behaviours will you assess at sift?",
+    isPageHeading: true,
+    classes: "govuk-fieldset__legend--m"
+  }
+},
+hint: {
+  text: "Candidates will provide up to 250 words per behaviour. Select all that apply."
+},
+items: [
+  {
+    value: "Seeing the big picture",
+    text: "Seeing the big picture",
+    checked: checked("siftSP","Seeing the big picture")
+  },
+  {
+    value: "Changing and improving",
+    text: "Changing and improving",
+    checked: checked("siftSP","Changing and improving")
+  },
+  {
+    value: "Managing a quality service",
+    text: "Managing a quality service",
+    checked: checked("siftSP","Managing a quality service"),
+    checked: true
+  }
+]
+}) }}
+
+{{ govukCheckboxes({
+idPrefix: "interviewSP",
+name: "interviewSP",
+fieldset: {
+  legend: {
+    text: "What behaviours will you assess at interview?",
+    isPageHeading: true,
+    classes: "govuk-fieldset__legend--m"
+  }
+},
+hint: {
+  text: "Select all that apply."
+},
+items: [
+  {
+    value: "Seeing the big picture",
+    text: "Seeing the big picture",
+        checked: checked("interviewSP","Seeing the big picture")
+  },
+  {
+    value: "Changing and improving",
+    text: "Changing and improving",
+        checked: checked("interviewSP","Changing and improving")
+  },
+  {
+    value: "Managing a quality service",
+    text: "Managing a quality service",
+        checked: checked("interviewSP","Managing a quality service")
+  }
+]
+}) }}
+<button class="govuk-button" data-module="govuk-button">Continue</button>
+{{ govukButton({
+  text: "Preview advert",
+  classes: "govuk-button--secondary",
+  href: "preview-advert"
+}) }}
+{% include 'includes/return-task-list.html' %}
+{% endblock %}

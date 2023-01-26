@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+
+{% block Content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+<span class="govuk-caption-xl">Summary</span>
+<h1 class="govuk-heading-xl">Sifting and selection methods</h1>
+  {% endblock %}
+<dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">{{ data['experience1'] | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">{{ data['experience2']  | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">{{ data['experience3']  | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">{{ data['experience4']  | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-l">At interview</h2>
+
+
+
+  <span class="govuk-caption-l">Next section</span>
+  <h2 class="govuk-heading-l">Recruitment channels</h2>
+  <form action="approach" method="post" novalidate>
+    <input type="hidden" name="answers-checked" value="true">
+    <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+  </form>
+  </div>
+  </div>
+  {% include 'includes/return-task-list.html' %}

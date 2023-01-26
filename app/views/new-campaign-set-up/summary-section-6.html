@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "alpha"
+  },
+  html: 'Your <a href"">feedback</a> will help us to improve.'
+})}}
+{% include 'includes/user-header.html' %}
+<a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-full">
+
+    <span class="govuk-caption-xl">Summary</span>
+    <h1 class="govuk-heading-xl">Finalise and submit for launch</h1>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Person specification</dt>
+        <dd class="govuk-summary-list__value">{{ data['be-detail'] | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Responsibilities</dt>
+        <dd class="govuk-summary-list__value">{{ data['more-detail']  | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="about-the-role">Change<span class="govuk-visually-hidden"> job title</span></a></dd>
+      </div>
+    </dl>
+
+
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Essential criteria</dt>
+        <dd class="govuk-summary-list__value">{{ data['experience1'] | truncate(150)}}<br><br>  {{ data['experience2'] | truncate(150)}}<br><br>  {{ data['experience3'] | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="essential-criteria">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Technical skills</dt>
+        <dd class="govuk-summary-list__value">{{ data['technical1'] | truncate(150)}}</dd>
+        <dd class="govuk-summary-list__actions"><a href="tech-criteria">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Eliminating criteria</dt>
+        <dd class="govuk-summary-list__value">Fluent French<br>Office-based for 3-days a week</dd>
+        <dd class="govuk-summary-list__actions"><a href="pre-sift-questions">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+      </div>
+    </dl>
+
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Behaviours</dt>
+        <dd class="govuk-summary-list__value">
+          {% set arr = data['behave1'] %}
+
+            {%- for items in arr | slice(1) %}
+            <ul class="govuk-list govuk-list--bullet-{{ loop.index }}">
+              {%- for item in items %}
+              <li>{{ item }}</li>
+              {%- endfor %}
+            </ul>
+            {%- endfor %}
+        </dd>
+          <dd class="govuk-summary-list__actions"><a href="behaviours">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+        </div>
+      </dl>
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Supporting information</dt>
+          <dd class="govuk-summary-list__value">{{ data['job-profession']}}</dd>
+          <dd class="govuk-summary-list__actions"><a href="additional-info">Change<span class="govuk-visually-hidden"> department</span></a></dd>
+        </div>
+      </dl>
+
+    </div>
+  </div>
+  <span class="govuk-caption-l">Before you submit</span>
+  <h2 class="govuk-heading-l">Reserve candidates matched</h2>
+  <form action="#" method="post" novalidate>
+    <input type="hidden" name="answers-checked" value="true">
+    <button type="submit" class="govuk-button" data-module="govuk-button">Continue</button>
+  </form>
+  {% include 'includes/return-task-list.html' %}
+  {% endblock %}
